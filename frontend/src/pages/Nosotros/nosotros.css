@@ -1,0 +1,29 @@
+.cont-formulario {
+  background-color: white;
+  width: auto;
+  padding: 60px;
+  border-radius: 10px;
+  
+ 
+}
+
+row{
+  display: flex;
+}
+
+.contenedor-formulario .img {
+  display: inline;
+}
+
+.blog-nota .p{
+  line-height: 23px;
+}
+
+.nosotros-page{
+  
+      font-family: 'Poppins', sans-serif;
+        background-attachment: fixed;
+                     
+        height: auto;
+      }
+ 

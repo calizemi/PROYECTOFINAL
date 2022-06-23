@@ -1,3 +1,4 @@
+from os import lseek
 from django.urls import path
 from .views import GetClienteView, UpdateClienteView
 

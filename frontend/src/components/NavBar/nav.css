@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  max-height: 60px;
+  min-height: 60px;
+  padding: 70px 10%;
+}
+
+/*logo*/
+.logo {
+  margin-right: auto;
+  cursor: pointer;
+  transition: .5s;
+}
+.logo:hover{
+filter: saturate(3);
+
+
+}
+
+/*nav*/
+.nav ul {
+  list-style-type: none;
+}
+.menu-nav ul {
+  display: flex;
+  margin-right: 40px;
+
+}
+
+.menu-nav ul li {
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 1.2em;
+}
+
+.menu-nav ul li a {
+ color: rgb(90, 96, 114);
+}
+
+.menu-nav ul li a:hover {
+  color: rgb(118, 45, 128);
+ }
+
+.btn-login {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  color: #fff !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #73548b;
+  padding: 1px 9px 6px 9px;
+  border-radius: 20px;
+}
+
+.carshop:hover{
+  color: rgb(117, 101, 101);
+  
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 700px) {
+
+  .nav {
+width: 100%;
+   position: fixed;
+    font-size: 16px;
+    max-height: 60px;
+    min-height: 60px;
+    padding: 40px 10%;
+    margin-left: -11px;
+    box-shadow: 0px 4px 5px -1px #443939;
+    background-color: #f8f4f4;
+    z-index: 10;
+    
+  }
+
+  .nav img{
+   margin-top: -40px;
+    width: 80px !important;
+  }
+
+
+  .menu-nav {
+   position: fixed;
+   transform: translateX(100%);
+    top: 80px;
+    width: 80%;
+    background-color: rgb(197, 197, 197);
+    box-shadow: -8px 0px 8px -2px rgba(0, 0, 0, 0.46);
+    height: 100%;
+    transition: 0.3s ease-in;
+  }
+  .menu-nav ul {
+    margin: auto;
+    margin-top: 80px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+    
+  
+  }
+.nav__toggler{
+  display: block !important;
+}
+
+}
+ 
+.nav__toggler div{
+  width: 1.8em;
+  height: 0.2rem;
+  margin: 0.2rem;
+  background: rgb(102, 102, 102);
+  transition: 0.5s;
+
+}
+
+.nav__toggler {
+  cursor: pointer;
+  display: none;
+  margin-top: -30px;
+}
+
+/*nav active class*/
+
+.nav__active {
+ transform: translateX(-55%);
+}
+
+
+/*toggle icon animation*/
+
+.toggle .line1{
+  transform: rotate(-45deg) translate(-4px, 5px);
+}
+
+.toggle .line2{
+opacity: 0;
+}
+
+.toggle .line3{
+  transform: rotate(45deg) translate(-4px, -5px);
+}

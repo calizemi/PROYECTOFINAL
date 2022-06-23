@@ -1,0 +1,14 @@
+.button-submit{
+    background-color:#73548B;
+    border: none;
+    padding: 15px;
+    border-radius:10px;
+    color: rgb(255, 255, 255);
+
+}
+
+.img-form{
+   
+    width: 350px;
+    display: flex;
+}
