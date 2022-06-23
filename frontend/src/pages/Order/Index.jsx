@@ -2,13 +2,11 @@ import React, { Fragment, useContext } from 'react'
 import AppContext from '../../context/AppContext'
 import "./order.css";
 import { Box, Button, IconButton, Step, StepButton, Stepper, Typography } from '@mui/material';
-import ShoppingCart from '../../containers/ShoppingCart'
-import DeleteOutline from '@mui/icons-material/DeleteOutline'
-import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import OrderItem from '../../components/OrderItem';
+import Shipping from '../../components/Shipping';
 
-const Index = () => {
+
+const Index = (props) => {
   
   const { state } = useContext(AppContext);
   
@@ -116,7 +114,26 @@ const Index = () => {
                     )}
             
                   </div>
-                <aside>
+                
+                </>
+            
+                ):(
+                  (activeStep + 1)===2?(
+                    <div className="basket">
+                      <Typography sx={{ mt: 2, mb: 1 }}>Registro de Cuenta</Typography>
+                      <Shipping nextstep={handleNext}/>
+                    </div>
+                  ):(
+                    <div className="basket">
+                      <Typography sx={{ mt: 2, mb: 1 }}>Registro de Pago</Typography>
+                    </div>
+                    
+                  )
+                )
+                
+
+            }
+            <aside>
                   <div className="summary">
                     <div className="summary-total-items"><span className="total-items strong"></span> Items in your Bag</div>
                     <div className="summary-subtotal">
@@ -136,17 +153,6 @@ const Index = () => {
                     </div>
                   </div>
                 </aside>
-                </>
-            
-                ):(
-                  (activeStep + 1)===2?(
-                    <Typography sx={{ mt: 2, mb: 1 }}>Registro de Cuenta</Typography>
-                  ):(
-                    <Typography sx={{ mt: 2, mb: 1 }}>Registro de Pago</Typography>
-                  )
-                )
-
-            }
 
             
           </React.Fragment>

@@ -5,18 +5,28 @@ import { rulesText,rulesEmail,rulesContraseña } from "../../services/rulesInput
 import logo from "../../assets/image/logo.png";
 import signUp from "../../assets/image/signUp.png";
 import Login from "../../components/Login";
-import { useState } from "react";
+import { useEffect,useContext } from "react";
 import { Theme } from "../../styles";
 import { ThemeProvider } from "@mui/material/styles";
+
+import Context from '../../context/UserContext'
+
+
 
 
 const SignUp = () => {
   
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, []);
 
-const [open, setOpen] = useState(false)
-const handleClose=()=>{
-setOpen(false)
-}
+  const { signup } = useContext(Context);
+
+  //const [accountCreated, setAccountCreated] = useState(false);
+// const [open, setOpen] = useState(false)
+// const handleClose=()=>{
+// setOpen(false)
+// }
   const {
     control,
     handleSubmit,
@@ -25,6 +35,10 @@ setOpen(false)
 
   const onsubmit = (data) => {
     //registerUser(data,"cliente");
+   console.log(data);
+    signup(data.nombre, data.apellidos, data.email, data.password, data.password);
+
+    window.scrollTo(0,0)
 
   };
   
@@ -143,7 +157,7 @@ setOpen(false)
                 color="analogous"
                 sx={{ height: 47 }}
                 >
-                  Siguiente
+                  Registrar
                 </Button>
                 </ThemeProvider>
               </div>
@@ -163,5 +177,6 @@ setOpen(false)
   );
 };
 
-export default SignUp;
+
+export default SignUp
 

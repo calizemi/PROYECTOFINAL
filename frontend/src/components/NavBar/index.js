@@ -12,25 +12,34 @@ import {Theme} from "../../styles";
 import AppContext from "../../context/AppContext"
 import ShoppingCart from "../../containers/ShoppingCart";
 
+import Context from '../../context/UserContext'
 
-const Navbar = () => {
+
+const Navbar = (props) => {
   const [open, setOpen] = useState(false);
   const [user,setUser]=useState(null);
 	const [toggleOrders, setToggleOrders] = useState(false);
+  const { refresh,check_authenticated,load_user,stateauth } = useContext(Context);
 
 
   const getUser = () => {
-    /*onAuthStateChanged(auth, (user) => {
+    
+    refresh();
+    check_authenticated();
+    load_user();
+    setUser(stateauth.user);
+    
+    /*onAuthStateChan ged(auth, (user) => {
       user?setUser(user):setUser(null); 
       console.log(user)
     });*/
   };
-
+ 
   useEffect(() => {
     getUser();
   }, []);
 
-
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -54,6 +63,7 @@ const Navbar = () => {
   
   const { state } = useContext(AppContext);
 
+  
 
   // const closeicon = (
   //   <CloseIcon
@@ -95,8 +105,8 @@ const Navbar = () => {
                 }
                   >
                    
-                    {user&&'LOGOUT'}
-                    {!user&&'LOGIN'}
+                    {stateauth.user&&'logout'}
+                    {!stateauth.user&&'LOGIN'}
                   </Button>
                   </ThemeProvider>
                   

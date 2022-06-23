@@ -27,3 +27,15 @@ export const rulesEmail = {
       message: "Máximo 80 caracteres",
     },
   };
+
+  export const rulesminmax = {
+    required: { value: true, message: "Campo requerido" },
+    minLength: {
+      value: 3,
+      message: "Mínimo 3 caracteres",
+    },
+    maxLength: {
+      value: 200,
+      message: "Máximo 200 caracteres",
+    },
+  };

@@ -12,6 +12,7 @@ const useInitialState = () => {
 
 		// console.log("Add",product)
 
+		
 		let tempState ;
 		if (state.cart.length > 0 ) {
 			tempState = state.cart.map((item) =>{

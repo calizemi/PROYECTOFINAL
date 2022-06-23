@@ -1,11 +1,12 @@
 import "./index.css";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import { Button, TextField } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { ThemeProvider } from "@mui/material/styles";
 import { Theme } from "../../styles";
 import { rulesEmail,rulesContraseña } from "../../services/rulesInputs";
 
+import Context from '../../context/UserContext'
 
 const photoURL =
   "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
@@ -13,13 +14,15 @@ const photoURL =
 const Login = () => {
   const [user,setUser]=useState(null);
   const [isError,setIsError]=useState(false);
-  
+  const { stateauth,login,logout } = useContext(Context);
   const getUser = () => {
+    setUser(stateauth.user)
     /*onAuthStateChanged(auth, (user) => {
       user?setUser(user):setUser(null); 
     });*/
   };
   const iniciarSesion=async(data)=>{
+    login(data.email,data.password)
     /*const errores=await loginUser(data);
     setIsError(errores?false:true);
    */
@@ -118,15 +121,15 @@ const {control,handleSubmit} = useForm({});
           <br />
           <div className="div-input">
           <img width="70"  src={photoURL} alt="" />
-          <span>Usuario :{user?.displayName}</span>
+          <span>Usuario :{user?.get_full_name}</span>
           </div>
           <br />
           <ThemeProvider theme={Theme}>
           <Button 
-           /*onClick={logOutUser} 
+           onClick={logout} 
            variant={"contained"} 
            size="medium"
-           fullWidth*/
+           fullWidth
            >
             Cerrar Sesion
           </Button>
