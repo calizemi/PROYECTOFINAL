@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 import os
 
+from apps.cliente.models import Cliente
+
 class UserAccountManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -11,9 +13,10 @@ class UserAccountManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
 
         user.set_password(password)
-        
-        
         user.save()
+        
+        perfil = Cliente.objects.create(user=user)
+        perfil.save()
 
         return user
 

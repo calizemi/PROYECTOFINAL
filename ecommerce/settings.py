@@ -15,6 +15,7 @@ from pathlib import Path
 import os
 import environ
 from datetime import timedelta
+import cloudinary
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,10 +36,14 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'apps.user',
+    'apps.producto',
+    'apps.cliente',
     'rest_framework',
     'corsheaders',
     'djoser',
     'social_django',
+    'cloudinary',
+    'paypal.standard.ipn',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'django.contrib.admin',
@@ -230,3 +235,12 @@ if not DEBUG:
     EMAIL_USE_TLS = 'True'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+cloudinary.config( 
+  cloud_name = "dz0tigrzw", 
+  api_key = "729512136134292", 
+  api_secret = "PnhelLOhMpc5Awvx1cl55pyRdIc" 
+)
+
+
+PAYPAL_TEST = True
