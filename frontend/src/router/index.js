@@ -17,7 +17,7 @@ import Order from "../pages/Order/Index";
 import NotFound from "../pages/NotFound";
 
 import Blog from "../pages/Blog";
-
+import Panel from "../pages/Panel/Panel"
 import Nosotros from "../pages/Nosotros";
 
 const Router = () => {
@@ -42,7 +42,7 @@ const Router = () => {
                 path="/activate/:uid/:token"
                 element={<Activate />}
               />
-
+              <Route path="/panel" element={<Panel/>}/>
               <Route path="/order" element={<Order />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/blog" element={<Blog />} />

@@ -1,4 +1,4 @@
-export const ApiProductos = 'https://62a2724acc8c0118ef6280c6.mockapi.io/productos';
+export const ApiProductos ='http://localhost:8000/api/producto/producto';
 
 export const getProductos = async () => {
     try {
