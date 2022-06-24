@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'apps.cliente',
     'apps.shipping',
     'apps.orders',
-    # 'apps.payment',
+    'apps.payment',
     'rest_framework',
     'corsheaders',
     'djoser',
