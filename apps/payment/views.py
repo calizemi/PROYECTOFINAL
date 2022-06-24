@@ -41,8 +41,6 @@ class ProcessPaymentView(APIView):
         data = self.request.data
         cartItems=self.request.cart
 
-        tax = 0.18
-
         nonce = data['nonce']
         shipping_id = str(data['shipping_id'])
         full_name = data['full_name']
@@ -83,12 +81,12 @@ class ProcessPaymentView(APIView):
         
         if newTransaction.is_success or newTransaction.transaction:
             for cart_item in cart_items:
-                update_producto = Producto.objects.get(id=cart_item.id)
+                update_producto = Producto.objects.get(idproducto=cart_item.id)
                 
                 cantidad = int(update_producto.cantidad) - int(cart_item.quantity)
 
                 #actualizar el producto
-                Producto.objects.filter(id=cart_item.id).update(
+                Producto.objects.filter(idproducto=cart_item.id).update(
                     cantidad=cantidad
                 )
             
@@ -117,7 +115,7 @@ class ProcessPaymentView(APIView):
             for cart_item in cart_items:
                 try:
                     # agarrar el producto
-                    producto = Producto.objects.get(id=cart_item.id)
+                    producto = Producto.objects.get(idproducto=cart_item.id)
 
                     OrderItem.objects.create(
                         producto=producto,
