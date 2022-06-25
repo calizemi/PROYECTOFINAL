@@ -3,14 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Container, Grid, Button } from "@mui/material";
 import "./detail.css";
 import AppContext from '../../context/AppContext'
-import { getProductoById } from "../../services/api";
 import { ApiProductos } from "../../services/api";
 import axios from "axios";
 
 const Detail = () => {
 
   const { id } = useParams();
-  const urlApi = `${ApiProductos}/${id}`;
+  const urlApi = `${ApiProductos}`+`producto/producto/`+`${id}`;
   const history = useNavigate();
   const [product, setProduct] = useState({});
   

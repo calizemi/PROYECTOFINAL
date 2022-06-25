@@ -1,8 +1,8 @@
-export const ApiProductos ='http://localhost:8000/api/producto/producto';
+export const ApiProductos ='http://localhost:8000/api/';
 
 export const getProductos = async () => {
     try {
-        const response = await fetch(ApiProductos);
+        const response = await fetch(ApiProductos+"producto/producto");
         const data = await response.json();
         return data;
     } catch (err) {
@@ -12,7 +12,7 @@ export const getProductos = async () => {
 
 export const getProductoById = async(id)=>{
     try{
-        const response = await  fetch(`${ApiProductos}/${id}`);
+        const response = await  fetch(ApiProductos+"producto"+id);
         const data = await response.json();
         return data;
     }catch(err){

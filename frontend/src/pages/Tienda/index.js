@@ -14,7 +14,7 @@ import { ApiProductos } from "../../services/api";
 
 
 const Tienda = () => {
-  const urlApi = `${ApiProductos}`;
+  const urlApi = `${ApiProductos}`+`producto/producto`;
   const [products, setProducts] = useState([]);
 
   const fetchProducts = async () => {
@@ -154,7 +154,7 @@ const Tienda = () => {
           <Grid container cont-card spacing={3} mt={2} mb={5} xs={12}>
             {products.length > 0 &&
               products.map((product) => (
-                <Grid item md={4} key={product.id} >
+                <Grid item md={4} key={product.idproducto} >
                   <Card height={200}>
                     <CardMedia component="img" height={200} width={250} image={product.url}
                     />
@@ -163,7 +163,7 @@ const Tienda = () => {
                         <p>{product.nombre}</p>
                         <span className="price">Precio $ {product.precio}</span>
 
-                        <Link to={`/tienda/detalles/${product.id}`} className="link">
+                        <Link to={`/tienda/detalles/${product.idproducto}`} className="link">
                           <Button variant="contained" className="button">Ver detalles</Button>
                         </Link>
                         <Button variant="contained" onClick={() => handleClick(product)} className="button" >Agregar</Button>
