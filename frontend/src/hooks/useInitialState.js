@@ -81,6 +81,7 @@ const useInitialState = () => {
 
 	return {
 		state,
+		setState,
 		addToCart,
 		removeFromCart,
 		addQuantity,

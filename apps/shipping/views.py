@@ -6,12 +6,10 @@ from .serializers import ShippingSerializer
 
 
 class ShippingView(APIView):
-    
-    permission_classes = [permissions.IsAuthenticated ]
 
     def get(self, request):
 
-        shipping_options = Shipping.objects.order_by('price').all()
+        shipping_options = Shipping.objects.order_by('precio').all()
         shipping_options = ShippingSerializer(shipping_options, many=True)
 
         return Response(

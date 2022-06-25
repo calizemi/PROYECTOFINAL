@@ -39,7 +39,6 @@ class ProcessPaymentView(APIView):
     def post(self, request, format=None):
         user = self.request.user
         data = self.request.data
-        cartItems=self.request.cart
 
         nonce = data['nonce']
         shipping_id = str(data['shipping_id'])
@@ -50,7 +49,7 @@ class ProcessPaymentView(APIView):
         distrito = data['distrito']
         codigo_postal = data['codigo_postal']
         telefono = data['telefono']
-        cart_items = cartItems
+        cart_items = data['cart_items']
 
         
         shipping = Shipping.objects.get(id=int(shipping_id))

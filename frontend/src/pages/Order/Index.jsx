@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import AppContext from '../../context/AppContext'
 import "./order.css";
 import { Box, Button, IconButton, Step, StepButton, Stepper, Typography } from '@mui/material';
@@ -9,6 +9,19 @@ import Shipping from '../../components/Shipping';
 const Index = (props) => {
   
   const { state } = useContext(AppContext);
+  const[formData,setFormData]=useState(
+    {
+      full_name: '',
+      precio_total: 0,
+      direccion: '',
+      ciudad: '',
+      distrito: '',
+      codigo_postal: '',
+      telefono: '',
+      shipping_id: 0,
+  }
+  )
+  
   
   var grandTotal = function(arr) {
 		return arr.reduce((sum, i) => {
@@ -67,6 +80,8 @@ const Index = (props) => {
       setCompleted({});
     };
 
+  
+    console.log("pp",formData)
 
   return (
     <Fragment>
@@ -121,7 +136,7 @@ const Index = (props) => {
                   (activeStep + 1)===2?(
                     <div className="basket">
                       <Typography sx={{ mt: 2, mb: 1 }}>Registro de Cuenta</Typography>
-                      <Shipping nextstep={handleNext}/>
+                      <Shipping nextstep={handleNext} get_total={grandTotal(state.cart)} formData={formData} setFormData={setFormData}/>
                     </div>
                   ):(
                     <div className="basket">
@@ -193,6 +208,7 @@ const Index = (props) => {
 
    </Fragment>
   )
+ 
 }
 
 export default Index;
