@@ -16,7 +16,7 @@ const useInitialState = () => {
 		let tempState ;
 		if (state.cart.length > 0 ) {
 			tempState = state.cart.map((item) =>{
-				if (item.id === product.idproducto){
+				if (item.id === product.id){
 					return { ...item, quantity: item.quantity + 1 } //Actualizamos la cantidad
 				} else {
 					return item
@@ -24,7 +24,7 @@ const useInitialState = () => {
 		   	})
 		}	
 	
-		let itemFind = state.cart.find(items => items.id === product.idproducto);
+		let itemFind = state.cart.find(items => items.id === product.id);
 		if (itemFind === undefined){
 			setState({
 				...state,
