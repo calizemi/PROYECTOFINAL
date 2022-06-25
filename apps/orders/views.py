@@ -36,7 +36,7 @@ class ListOrdersView(APIView):
 
 
 class ListOrderDetailView(APIView):
-    def get(self, request, transactionId, format=None):
+    def get(self, request, transactionId):
         user = self.request.user
 
         try:

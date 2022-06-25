@@ -41,4 +41,4 @@ class OrderItem(models.Model):
     fecha_agregado = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return self.name
+        return self.nombre
