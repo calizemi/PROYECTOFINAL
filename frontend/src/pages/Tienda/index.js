@@ -14,9 +14,9 @@ import { ApiProductos } from "../../services/api";
 
 
 const Tienda = () => {
-  const urlApi = `${ApiProductos}`+`producto/producto`;
+  const urlApi = `${ApiProductos}` + `producto/producto`;
   const [products, setProducts] = useState([]);
-
+  const [basket, setBasket] = useState([]);
   const fetchProducts = async () => {
     axios.get(urlApi)
       .then(res => {
@@ -26,53 +26,18 @@ const Tienda = () => {
       })
   };
 
-  const handleOrderProducts = (e) => {
-    const { value } = e.target;
-
-    if (value === "Todos") {
-      fetchProducts();
-      return;
-    }
-    const sortedProducts = sortBy(products, value);
-    setProducts(sortedProducts);
-  };
-  const handleFilterMaterial = async (e) => {
-    const { value } = e.target;
-
-    if (value === "Todos") {
-      fetchProducts();
-      return;
-    }
-    const products = await fetchProducts();
-    const sortedProducts = products.filter(
-      (product) => product.material.trim() === value
-    );
-    setProducts(sortedProducts);
-  }
-
-  const handleFilterFuncion = async (e) => {
-    const { value } = e.target;
-
-    if (value === "Todos") {
-      fetchProducts();
-      return;
-    }
-    const products = await fetchProducts();
-    const sortedProducts = products.filter(
-      (product) => product.funcion.trim() === value
-    );
-    setProducts(sortedProducts);
-  }
-
   useEffect(() => {
     fetchProducts();
   }, []);
 
+
   const { addToCart } = useContext(AppContext);
 
-  const handleClick = product => {
-    addToCart({ ...product, quantity: 1 });
+  const handleClick = products => {
+      addToCart({...products, quantity:1}) 
   }
+  /* */
+
 
   return (
     <Container className="container-tienda">
@@ -81,7 +46,7 @@ const Tienda = () => {
           <Grid padding={2} className="ordenar">
             <FormControl fullWidth>
               <InputLabel>Ordenar por:</InputLabel>
-              <Select label="Ordenar por:" onChange={handleOrderProducts} className="select">
+              <Select label="Ordenar por:" className="select">
                 <MenuItem value="Todos">Todos</MenuItem>
                 <MenuItem value="name">Nombre</MenuItem>
                 <MenuItem value="precio">Precio</MenuItem>
