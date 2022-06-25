@@ -1,15 +1,13 @@
 from multiprocessing import context
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from rest_framework import permissions
 from .models import Material, Funcion, Producto
 from .serializers import MaterialSerializer,FuncionSerializer, ProductoSerializer, MaterialProductosSerializer
 
 from .models import Producto
 
 from .serializers import ProductoSerializer
-
-
     
 class MaterialView(APIView):
     def get (self,request):
@@ -59,28 +57,20 @@ class MaterialProductosView(APIView):
         }
 
         return Response(context)
+
     
-# class ProductoView(APIView):
-    
-#     def get(self,request):
-#         dataProducto=Producto.objects.all()
-#         serProducto=ProductoSerializer(dataProducto,many=True)
+class ProductoDetailView(APIView):
+    permission_classes = (permissions.AllowAny, )
+    def get(self,request,producto_id):
+       
+            producto = Producto.objects.get(idproducto=producto_id)
+            producto = ProductoSerializer(producto)
+            
+            context ={
+                  'ok':True,
+                  'content': producto.data
+             }
         
-#         context ={
-#             'ok':True,
-#             'data': serProducto.data
-#         }
+            return Response(context) 
         
-#         return Response(context)
-    
-# class ProductoDetailView(APIView):
-#     def get(self,request,producto_id):
-#         dataProductoDetail = Producto.objects.get(pk=property)
-#         serProductoDetail =ProductoSerializer(dataProductoDetail)
-        
-#         context ={
-#             'ok' : True,
-#             'data': serProductoDetail.data
-#         }
-        
-#         return Response(context)
+       

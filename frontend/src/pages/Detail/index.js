@@ -41,27 +41,27 @@ const Detail = () => {
           sx={{ height: "80vh", backgroundColor: "#fff", borderRadius: "30px" }}
         >
           <Grid item md={6}>
-            <img style={{ borderRadius: "20%", boxShadow: "2px 0px 22px -2px rgba(0,0,0,0.75)", marginLeft: "50px" }} src={product?.url} width={400} alt="" />
+            <img style={{ borderRadius: "20%", boxShadow: "2px 0px 22px -2px rgba(0,0,0,0.75)", marginLeft: "50px" }} src={product?.content.url} width={400} alt="" />
           </Grid>
           <Grid item md={6} >
             <hr />
-            <h2>{product?.nombre}</h2>
+            <h2>{product?.content.nombre}</h2>
             <hr />
             <br />
 
             <Grid container>
               <Grid >
                 <p>
-                  <b>Código</b>: {product.id}
+                  <b>Código</b>: {product.content.idproducto}
                 </p>
                 <p>
-                  <b>Nombre</b>: {product.nombre}
+                  <b>Nombre</b>: {product.content.nombre}
                 </p>
                 <p>
-                  <b>Descripción</b>: {product.descripcion}
+                  <b>Descripción</b>: {product.content.descripcion}
                 </p>
                 <p>
-                  <b>Dimensiones</b>: {product.dimension} cm
+                  <b>Dimensiones</b>: {product.content.dimension} cm
                 </p>
               </Grid>
               <Grid item md={12} mt={5}>

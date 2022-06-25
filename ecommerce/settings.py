@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'apps.user',
     'apps.producto',
     'apps.cliente',
+    'apps.shipping',
+    'apps.orders',
+    'apps.payment',
     'rest_framework',
     'corsheaders',
     'djoser',
@@ -218,6 +221,11 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
 }
+
+BT_ENVIRONMENT = 'sandbox'
+BT_MERCHANT_ID = 'r6vz85fzvg3m83c6'
+BT_PUBLIC_KEY = '4jpxbsdqrt9nx5zs'
+BT_PRIVATE_KEY = '13be68fcad95942408dc730de642e21f'
 
 AUTH_USER_MODEL="user.UserAccount"
 
