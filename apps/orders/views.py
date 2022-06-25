@@ -10,7 +10,7 @@ class ListOrdersView(APIView):
     def get(self, request, format=None):
         user = self.request.user
         try:
-            orders = Order.objects.order_by('-date_issued').filter(user=user)
+            orders = Order.objects.order_by('-fecha_proceso').filter(user=user)
             result = []
 
             for order in orders:
@@ -57,7 +57,7 @@ class ListOrderDetailView(APIView):
                 result['shipping_precio'] = order.shipping_precio
                 result['fecha_proceso'] = order.fecha_proceso
 
-                order_items = OrderItem.objects.order_by('-fecha_proceso').filter(order=order)
+                order_items = OrderItem.objects.order_by('-fecha_agregado').filter(order=order)
                 result['order_items'] = []
 
                 for order_item in order_items:

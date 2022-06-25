@@ -4,7 +4,7 @@ import { Navigate } from 'react-router'
 
 import Context from '../../context/UserContext'
 
-import {Oval} from 'react-loader-spinner'
+
 
 const Activate = () =>{
     const params = useParams()
@@ -26,19 +26,19 @@ const Activate = () =>{
     return <Navigate to='/' />;
     
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div >
           {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
-          <div className="max-w-3xl mx-auto">
+          <div >
           
           {stateauth.loading ? 
           <button
             
-          >
-            <Oval
+          >Esperando
+            {/* <Oval
             color="#fff"
             width={20}
             height={20}
-            />
+            /> */}
           </button>:
           <button
           onClick={activate_account}
