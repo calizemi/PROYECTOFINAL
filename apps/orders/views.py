@@ -4,7 +4,18 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Order, OrderItem
+from .serializers import OrderSerializers
 
+
+class OrderView(APIView):
+    def get(self, request):
+        req = Order.objects.all()
+        setOrder = OrderSerializers(req, many=True)
+        context = {
+            'ok': True,
+            'content': setOrder.data
+        }
+        return Response(context)
 
 class ListOrdersView(APIView):
     def get(self, request, format=None):
@@ -21,9 +32,9 @@ class ListOrdersView(APIView):
                 item['shipping_precio'] = order.shipping_precio
                 item['fecha_proceso'] = order.fecha_proceso
                 item['direccion'] = order.direccion
-                
+
                 result.append(item)
-            
+
             return Response(
                 {'orders': result},
                 status=status.HTTP_200_OK
@@ -41,7 +52,8 @@ class ListOrderDetailView(APIView):
 
         try:
             if Order.objects.filter(user=user, transaction_id=transactionId).exists():
-                order = Order.objects.get(user=user, transaction_id=transactionId)
+                order = Order.objects.get(
+                    user=user, transaction_id=transactionId)
                 result = {}
                 result['status'] = order.status
                 result['transaction_id'] = order.transaction_id
