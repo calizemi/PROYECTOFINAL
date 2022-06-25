@@ -14,7 +14,6 @@ const initialState = {
 
 const useUser =()=>{
     const [stateauth,setStateauth]=useState(initialState);
-
     const check_authenticated = async()=>{
 
         setStateauth({
@@ -216,9 +215,11 @@ const useUser =()=>{
                     ...stateauth,
                     loading: false
                 })
+                window.location.reload();
                 Swal.fire('Inicio de Sesion con exito!!', 'success').then((result)=>{
                     if(result.isConfirmed){
                         window.location.reload();
+                       
                     }
                 });
             } else {
@@ -274,6 +275,8 @@ const useUser =()=>{
                     ...stateauth,
                     loading: false
                 })
+
+                window.location.href="/"
                 Swal.fire('Cuenta activada correctamente', 'success').then((result)=>{
                     if(result.isConfirmed){
                         window.location.href="/"
@@ -348,7 +351,7 @@ const logout = () => {
                 isAuthenticated: false,
                 user: null,
             })
-
+            window.location.reload();
             Swal.fire('Sesion cerrada!', 'success').then((result)=>{
                 if(result.isConfirmed){
                     window.location.reload();

@@ -41,11 +41,11 @@ const {stateauth}=useContext(Context);
     //     shipping_id,
     // } = formData;
 
-    const {
-        control,
-        handleSubmit,
-        formState: { errors },
-      } = useForm({ });
+      const {
+          control,
+          handleSubmit,
+          formState: { errors },
+        } = useForm({ });
 
     useEffect(() => {
         window.scrollTo(0,0)

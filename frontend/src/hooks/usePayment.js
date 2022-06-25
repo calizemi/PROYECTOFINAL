@@ -12,6 +12,8 @@ const initialState = {
 const usePayment =()=>{
     const [statepay,setStatepay]=useState(initialState);
 
+    const url='http://127.0.0.1:8000'
+
     const get_client_token = async () => {
         const config = {
             headers: {
@@ -21,8 +23,8 @@ const usePayment =()=>{
         };
     
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/payment/get-token`, config);
-    
+            const res = await axios.get(`${url}/api/payment/get-token`, config);
+    // console.log("res",res)
             if (res.status === 200) {
                 setStatepay({
                     ...statepay,
@@ -76,6 +78,8 @@ const usePayment =()=>{
             telefono,
             cart_items
         });
+
+        console.log("body:",body)
     
         setStatepay({
             ...statepay,
@@ -83,7 +87,8 @@ const usePayment =()=>{
         });
     
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/payment/make-payment`, body, config);
+            const res = await axios.post(`${url}/api/payment/make-payment`, body, config);
+        
             if (res.status === 200 && res.data.success) {
                 setStatepay({
                     ...statepay,

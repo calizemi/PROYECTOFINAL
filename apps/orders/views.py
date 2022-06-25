@@ -6,17 +6,6 @@ from rest_framework import status
 from .models import Order, OrderItem
 from .serializers import OrderSerializers
 
-
-class OrderView(APIView):
-    def get(self, request):
-        req = Order.objects.all()
-        setOrder = OrderSerializers(req, many=True)
-        context = {
-            'ok': True,
-            'content': setOrder.data
-        }
-        return Response(context)
-
 class ListOrdersView(APIView):
     def get(self, request, format=None):
         user = self.request.user

@@ -18,7 +18,7 @@ urlpatterns = [
     path('api/cliente/', include('apps.cliente.urls')),
     path('api/shipping/', include('apps.shipping.urls')),
     path('api/orders/', include('apps.orders.urls')),
-    
+    path('api/payment/', include('apps.payment.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += [re_path(r'^.*',

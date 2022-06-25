@@ -1,14 +1,17 @@
 import React, { Fragment, useContext, useState } from 'react'
 import AppContext from '../../context/AppContext'
+import ShippContext from '../../context/AppContext'
 import "./order.css";
 import { Box, Button, IconButton, Step, StepButton, Stepper, Typography } from '@mui/material';
 import OrderItem from '../../components/OrderItem';
 import Shipping from '../../components/Shipping';
+import Payment from '../../components/Payment';
 
 
 const Index = (props) => {
   
   const { state } = useContext(AppContext);
+  const { stateshipp } = useContext(ShippContext);
   const[formData,setFormData]=useState(
     {
       full_name: '',
@@ -22,12 +25,34 @@ const Index = (props) => {
   }
   )
   
-  
+  console.log(stateshipp)
   var grandTotal = function(arr) {
 		return arr.reduce((sum, i) => {
 		  return (sum + (i.precio * i.quantity))
 		}, 0).toFixed(2)
 	  };
+
+  //   const get_shipping_price=(shipping_id)=>{
+  //     if(shipping_id===0){
+  //       const precio=0
+  //       return(precio)
+  //     }else{
+  //       stateshipp.shipping.map((shipp, index) => {
+  //         if(shipp.id=shipping_id){
+  //           return (shipp.precio)
+  //         }else{
+  //           const precio=0
+  //         return(precio)
+  //         }
+  //       })
+
+  //   }
+  // }
+
+  // const precio_shipp=get_shipping_price(formData.shipping_id)
+  // console.log(formData)
+  // console.log(precio_shipp)
+
 
     const steps = ['Bolsa de Compra', 'Despacho', 'Pago'];
 
@@ -127,6 +152,10 @@ const Index = (props) => {
                         <OrderItem type="Order" product={product} key={`orderItem-${product.id}`} />
                       )
                     )}
+
+<div className="summary-checkout">
+                      <button onClick={handleNext} className="primary-button">Shipping</button>
+                    </div>
             
                   </div>
                 
@@ -135,12 +164,13 @@ const Index = (props) => {
                 ):(
                   (activeStep + 1)===2?(
                     <div className="basket">
-                      <Typography sx={{ mt: 2, mb: 1 }}>Registro de Cuenta</Typography>
+                     
                       <Shipping nextstep={handleNext} get_total={grandTotal(state.cart)} formData={formData} setFormData={setFormData}/>
                     </div>
                   ):(
                     <div className="basket">
-                      <Typography sx={{ mt: 2, mb: 1 }}>Registro de Pago</Typography>
+
+                      <Payment formData={formData}/>
                     </div>
                     
                   )
@@ -159,13 +189,15 @@ const Index = (props) => {
                       <div className="subtotal-title">Descuento</div>
                       <div className="subtotal-value final-value" id="basket-subtotal">0.00 S/</div>
                     </div>
+                    {/* <div className="summary-subtotal">
+                      <div className="subtotal-title">Shipping</div>
+                      <div className="subtotal-value final-value" id="basket-subtotal"> S/</div>
+                    </div> */}
                     <div className="summary-total">
                       <div className="total-title">Total</div>
                       <div className="total-value final-value" id="basket-total">{grandTotal(state.cart)} S/</div>
                     </div>
-                    <div className="summary-checkout">
-                      <button onClick={handleNext} className="primary-button">Go to Secure Checkout</button>
-                    </div>
+
                   </div>
                 </aside>
 

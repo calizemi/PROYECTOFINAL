@@ -7,7 +7,7 @@ import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 
 
-const OrderItem = ({type, product }) => {
+const OrderItem = ({type, product,nextstep }) => {
 	const { removeFromCart,addQuantity,removeQuantity } = useContext(AppContext);
 
 	const handleRemove = product => {
@@ -35,7 +35,11 @@ const OrderItem = ({type, product }) => {
 			<IconButton onClick={() => handleRemove(product)} >
 				<DeleteOutlineRoundedIcon sx={{ color: "#73548B" }}/>
 			</IconButton>
+
+
+
 		</div>
+		
 			):(
 			<div className="basket-product">
 			  <div className="basket-item">
@@ -65,7 +69,11 @@ const OrderItem = ({type, product }) => {
 					<DeleteOutline sx={{ color: "#73548B" }}/>
 				</IconButton>
 			  </div>
+			
+
 			</div>
+
+			
 			)
 		}
 		
