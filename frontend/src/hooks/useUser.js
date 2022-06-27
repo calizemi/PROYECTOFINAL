@@ -13,6 +13,7 @@ const initialState = {
 
 
 const useUser =()=>{
+    const url='http://127.0.0.1:8000'
     const [stateauth,setStateauth]=useState(initialState);
     const check_authenticated = async()=>{
 
@@ -35,7 +36,7 @@ const useUser =()=>{
             });
         
         try {
-            const res = await axios.post(`http://127.0.0.1:8000/auth/jwt/verify`,body,config);
+            const res = await axios.post(`${url}/auth/jwt/verify`,body,config);
             
             if(res.status === 200){
                 setStateauth({
@@ -99,7 +100,7 @@ const useUser =()=>{
         console.log(body);
 
         try{
-            const res = await axios.post('http://127.0.0.1:8000/auth/users/',body,config);
+            const res = await axios.post('${url}/auth/users/',body,config);
 
             if(res.status ===201){
                 Swal.fire('Te enviamos un correo, por favor activa tu cuenta. Revisa el correo de spam', 'success').then((result)=>{
@@ -152,7 +153,7 @@ const useUser =()=>{
             };
     
             try {
-                const res = await axios.get(`http://127.0.0.1:8000/auth/users/me/`, config);
+                const res = await axios.get(`${url}/auth/users/me/`, config);
             
                 if (res.status === 200) {
                     setStateauth({
@@ -198,7 +199,7 @@ const useUser =()=>{
         });
     
         try {
-            const res = await axios.post(`http://127.0.0.1:8000/auth/jwt/create/`, body, config);
+            const res = await axios.post(`${url}/auth/jwt/create/`, body, config);
         
             if (res.status === 200) {
                 localStorage.setItem('access', res.data.access);
@@ -268,7 +269,7 @@ const useUser =()=>{
         console.log(body);
     
         try {
-            const res = await axios.post(`http://127.0.0.1:8000/auth/users/activation/`, body, config);
+            const res = await axios.post(`${url}/auth/users/activation/`, body, config);
         
             if (res.status === 204) {
                 setStateauth({
@@ -327,7 +328,7 @@ const refresh = async () => {
         });
 
         try {
-            const res = await axios.post(`http://127.0.0.1:8000/auth/jwt/refresh/`, body, config);
+            const res = await axios.post(`${url}/auth/jwt/refresh/`, body, config);
             
             if (res.status === 200) {
                 localStorage.setItem('access', res.data.access);

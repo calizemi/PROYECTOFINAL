@@ -3,6 +3,7 @@ import {useState,useContext} from "react"
 import axios from 'axios'
 import Swal from 'sweetalert2';
 
+
 const initialState = {
     clientToken: null,
     made_payment: false,
@@ -10,9 +11,10 @@ const initialState = {
 };
 
 const usePayment =()=>{
-    const [statepay,setStatepay]=useState(initialState);
 
     const url='http://127.0.0.1:8000'
+
+    const [statepay,setStatepay]=useState(initialState);
 
     const get_client_token = async () => {
         const config = {
@@ -56,7 +58,7 @@ const usePayment =()=>{
         telefono,
         cart_items
     ) => {
-    
+
 
         const config = {
             headers: {
@@ -85,6 +87,7 @@ const usePayment =()=>{
             ...statepay,
             loading: true
         });
+
     
         try {
             const res = await axios.post(`${url}/api/payment/make-payment`, body, config);
@@ -92,10 +95,16 @@ const usePayment =()=>{
             if (res.status === 200 && res.data.success) {
                 setStatepay({
                     ...statepay,
-                    made_payment: true
+                    made_payment: true,
+                    loading:false
                 });
 
-                Swal.fire(res.data.success, 'success');
+                Swal.fire(res.data.success, 'success').then((result)=>{
+                    if(result.isConfirmed){
+                        window.location.reload();
+                        window.location.href="/";
+                    }
+                });
                 
             } else {
                 setStatepay({

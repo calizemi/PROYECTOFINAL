@@ -145,7 +145,7 @@ console.log(stateshipp)
                 <Controller
                   name={"codigo_postal"}
                   control={control}
-                  rules={rulesText}
+                  rules={rulesminmax}
                   render={({
                     field: { onChange, value },
                     fieldState: { error },

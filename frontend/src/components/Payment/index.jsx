@@ -60,9 +60,9 @@ const Payment= ({formData})=>{
 
           );
 
-          setState({
-            cart : []
-        })
+        //   setState({
+        //     cart : []
+        // })
       
     }
 
@@ -109,8 +109,9 @@ const Payment= ({formData})=>{
               
       
 
+
                 <div className="botom">
-              
+                {!statepay.loading&&(
                 <ThemeProvider theme={Theme}>
                 <Button 
                 onClick={handleSubmit(onsubmit)} 
@@ -121,7 +122,20 @@ const Payment= ({formData})=>{
                 >
                   Pagar
                 </Button>
-                </ThemeProvider>
+                </ThemeProvider>)}
+                {statepay.loading&&(
+                  <ThemeProvider theme={Theme}>
+                  <Button 
+                                  variant={"contained"} 
+                                  size="large"
+                                  color="analogous"
+                                  sx={{ height: 47 }}>
+        
+                    ESpere por favor la transaccion aun no ha terminado, no cierre la ventan
+                  </Button>
+                  </ThemeProvider>)}
+
+                )}
               </div>
                
             </form>

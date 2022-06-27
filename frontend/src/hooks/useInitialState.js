@@ -11,12 +11,12 @@ const useInitialState = () => {
 	const addToCart = (product) => {
 
 		// console.log("Add",product)
-
+     console.log(product)
 		
 		let tempState ;
 		if (state.cart.length > 0 ) {
 			tempState = state.cart.map((item) =>{
-				if (item.id === product.id){
+				if (item.idproducto === product.idproducto){
 					return { ...item, quantity: item.quantity + 1 } //Actualizamos la cantidad
 				} else {
 					return item
@@ -24,7 +24,7 @@ const useInitialState = () => {
 		   	})
 		}	
 	
-		let itemFind = state.cart.find(items => items.id === product.id);
+		let itemFind = state.cart.find(items => items.idproducto === product.idproducto);
 		if (itemFind === undefined){
 			setState({
 				...state,
@@ -38,10 +38,11 @@ const useInitialState = () => {
 
 	const addQuantity = (product) => {
 
+
 		let tempState ;
 		if (state.cart.length > 0 ) {
 			tempState = state.cart.map((item) =>{
-				if (item.id === product.id){
+				if (item.idproducto === product.idproducto){
 					return { ...item, quantity: item.quantity + 1 } //Actualizamos la cantidad
 				} else {
 					return item
@@ -59,7 +60,7 @@ const useInitialState = () => {
 		let tempState ;
 		if (state.cart.length > 0 ) {
 			tempState = state.cart.map((item) =>{
-				if (item.id === product.id){
+				if (item.idproducto === product.idproducto){
 					return { ...item, quantity: item.quantity===1?item.quantity:item.quantity-1 } //Actualizamos la cantidad
 				} else {
 					return item
@@ -74,9 +75,11 @@ const useInitialState = () => {
 	const removeFromCart = (product) => {
 		setState({
 			...state,
-			cart: state.cart.filter(items => items.id !== product.id),
+			cart: state.cart.filter(items => items.idproducto !== product.idproducto),
 		});
 	}
+
+	console.log(state)
 
 
 	return {

@@ -50,21 +50,6 @@ class ProcessPaymentView(APIView):
         codigo_postal = data['codigo_postal']
         telefono = data['telefono']
         cart_items = data['cart_items']
-        
-        
-        # for cart_item in data['cart_items']:
-        #      print cart_item
-        #      sub_item = {}
-        #      sub_item['idproducto'] = cart_item['idproducto']
-        #      sub_item['quantity'] = cart_item['quantity']
-             
-
-        #      cart_items.append(sub_item)
-
-        
-        
-        
-        # data['cart_items']
 
         
         shipping = Shipping.objects.get(id=int(shipping_id))
@@ -92,17 +77,7 @@ class ProcessPaymentView(APIView):
             )
         
         if newTransaction.is_success or newTransaction.transaction:
-            # for cart_item in cart_items:
-            #     update_producto = Producto.objects.get(idproducto=cart_item.idproducto)
-                
-            #     cantidad = int(update_producto.cantidad) - int(cart_item.quantity)
 
-            #     #actualizar el producto
-            #     Producto.objects.filter(idproducto=cart_item.idproducto).update(
-            #         cantidad=cantidad
-            #     )
-            
-            # crear orden
             try:
                 order = Order.objects.create(
                     user=user,
@@ -124,23 +99,23 @@ class ProcessPaymentView(APIView):
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
             
-            # for cart_item in cart_items:
-            #         try:
-            #             # agarrar el producto
-            #             producto = Producto.objects.get(idproducto=cart_item.idproducto)
+            for cart_item in cart_items:
+                try:
+                        # agarrar el producto
+                    producto = Producto.objects.get(idproducto=cart_item['idproducto'])
 
-            #             OrderItem.objects.create(
-            #                 producto=producto,
-            #                 order=order,
-            #                 nombre=producto.name,
-            #                 precio=producto.precio,
-            #                 cantidad=cart_item.quantity
-            #             )
-            #         except:
-            #             return Response(
-            #                 {'error': 'Transaction succeeded and order created, but failed to create an order item'},
-            #                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            #             )
+                    OrderItem.objects.create(
+                        producto=producto,
+                        order=order,
+                        nombre=producto.nombre,
+                        precio=producto.precio,
+                        cantidad=cart_item['quantity']
+                    )
+                except:
+                    return Response(
+                        {'error': 'Transaction succeeded and order created, but failed to create an order item'},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                    )
 
             try:
                 send_mail(

@@ -8,6 +8,9 @@ const initialState = {
 }
 
 const useShipping =()=>{
+
+    const url='http://127.0.0.1:8000'
+
     const [stateshipp,setStateshipp]=useState(initialState);
     
     const get_shipping_options = async() => {
@@ -19,7 +22,7 @@ const useShipping =()=>{
         };
     
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/shipping/shipping`, config);
+            const res = await axios.get(`${url}/api/shipping/shipping`, config);
             console.log(res)
             if (res.status === 200) {
                 setStateshipp( {
